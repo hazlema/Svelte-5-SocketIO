@@ -1,4 +1,4 @@
-# 🔌 Socket.IO Integration with Svelte
+# 🔌 Socket.IO Integration with Svelte 5 and Runes
 
 A powerful Socket class that integrates Socket.IO with Svelte's reactivity system for real-time communication.
 
@@ -45,7 +45,6 @@ A powerful Socket class that integrates Socket.IO with Svelte's reactivity syste
 ├── server/
 │   ├── server.js                # 🖥️ Socket.IO server
 │   └── package.json             # 📦 Server dependencies
-├── SocketIO.md                  # 📚 Detailed documentation
 └── README.md                    # 📖 This file
 ```
 
@@ -86,8 +85,6 @@ The included demo shows:
 - 📊 **Status tracking** - Monitor connection state and errors
 
 ## 📚 Documentation
-
-For detailed documentation, see [SocketIO.md](./SocketIO.md) which includes:
 
 - 🔧 Configuration options
 - 📊 Status tracking details  
