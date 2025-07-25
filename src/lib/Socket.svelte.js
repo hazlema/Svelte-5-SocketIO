@@ -1,3 +1,26 @@
+/*
+ * Socket Class for Svelte + Socket.IO
+ * ------------------------------------
+ * This class provides a reactive, Svelte-friendly wrapper around Socket.IO client connections.
+ * It manages connection state, reconnection, and event/message handling, exposing a status object and message log for real-time UI updates.
+ *
+ * Usage Example:
+ *   import { Socket } from './lib/Socket.svelte.js';
+ *   const socket = new Socket('http://localhost:3000');
+ *   socket.on('message', (data) => { ... });
+ *   socket.send('event', { foo: 'bar' });
+ *   // Use socket.status for reactivity in Svelte components
+ *
+ * Features:
+ *   - Reactive status tracking (connected, connecting, error, etc.)
+ *   - Message/event logging for debugging
+ *   - Custom event listeners and one-time listeners
+ *   - Clean resource management and destruction
+ *
+ * Designed for use in Svelte apps needing real-time communication with a Socket.IO server.
+ */
+
+// @ts-nocheck
 import { io } from 'socket.io-client';
 
 /**
