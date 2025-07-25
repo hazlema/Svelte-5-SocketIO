@@ -1,0 +1,14 @@
+{
+  "name": "socketio-cli-server",
+  "version": "1.0.0",
+  "description": "Socket.IO CLI server for testing",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "socket.io": "^4.8.1"
+  }
+}
