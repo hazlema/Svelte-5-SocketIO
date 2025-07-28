@@ -22,6 +22,19 @@
         })
     })
 
+	socket.on("ping", (data) => {
+        chatMessages.push({
+            text: "Server sent a ping! Reply with a PONG!",
+            timestamp: new Date(),
+            from: data.from || "Server",
+        })
+
+		const success = socket.send("pong", {
+            text: "PONG!",
+            timestamp: new Date(),
+        })
+    })
+
     socket.on("user-joined", (data) => {
         chatMessages.push({
             text: `${data.username} joined the chat`,
