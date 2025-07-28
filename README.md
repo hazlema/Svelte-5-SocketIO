@@ -56,16 +56,13 @@ A TypeScript-based Socket class that integrates Socket.IO with Svelte's reactivi
 ```typescript
 // In a parent component (e.g., src/routes/+layout.svelte)
 import { Socket } from '$lib/Socket.ts';
-import socketConfig from '$lib/socketConfig.ts'; // Example: { socketContext: 'mySocket' }
 
 const socket = new Socket('http://localhost:3001', socketConfig);
 await socket.connect(); // Initializes connection and sets context
 
 // In a child component (e.g., src/routes/SocketTest.svelte)
 import { Socket } from '$lib/Socket.ts';
-import socketConfig from '$lib/socketConfig.ts';
-
-let socketInstance: Socket = Socket.getSocketContext(socketConfig); // Retrieve during init
+let socketInstance: Socket = Socket.getSocketContext(); // Retrieve during init
 socketInstance.on('message', (data) => {
   console.log('Received:', data);
 });
