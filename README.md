@@ -2,7 +2,7 @@
 
 A TypeScript-based Socket class that integrates Socket.IO with Svelte's reactivity system for real-time communication, featuring Svelte context for instance sharing across components.
 
-![Socket demo UI](doc/testing-page.png)
+![Socket demo UI](doc/example.png)
 
 ## Quick Start
 
@@ -35,6 +35,15 @@ A TypeScript-based Socket class that integrates Socket.IO with Svelte's reactivi
 - **Svelte Context Sharing**: Enables sharing of socket instances across components using Svelte's context API, eliminating redundant connections.
 - **Type-Safe API**: Fully typed with TypeScript for robust integration and developer experience.
 - **Resource Management**: Ensures proper cleanup of resources on component destruction.
+
+## Test Server CLI Features
+The CLI is your trusty sidekick for monitoring server activity and sending commands faster than you can say "byte me!" Here's the lowdown on the stellar commands at your disposal:
+
+| Command | Function | Geeky Description |
+|---------|----------|-------------------|
+| **P**   | Ping Clients | Sends a ping to all connected clients.  |
+| **B**   | Broadcast to Clients | Broadcast a message to all clients. |
+| **Q**   | Quit | Time to shut down the warp drive and exit gracefully.  |
 
 ## Project Structure
 
