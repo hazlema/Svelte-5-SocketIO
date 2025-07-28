@@ -110,4 +110,4 @@ Contributions are welcome via issues and pull requests. This project showcases:
 
 ## License
 
-MIT License - free to use in your projects.
+MIT License - free to use in your projects
