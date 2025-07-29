@@ -66,10 +66,15 @@ The CLI is your trusty sidekick for monitoring server activity and sending comma
 // In a parent component (e.g., src/routes/+layout.svelte)
 import { Socket } from '$lib/Socket.ts';
 
+const socket = new Socket('http://localhost:3001');
+// or
 const socket = new Socket('http://localhost:3001', socketConfig);
-await socket.connect(); // Initializes connection and sets context
 
-// In a child component (e.g., src/routes/SocketTest.svelte)
+await socket.connect(); // Initializes connection and sets context
+```
+
+## In a child component 
+```typescript
 import { Socket } from '$lib/Socket.ts';
 let socketInstance: Socket = Socket.getSocketContext(); // Retrieve during init
 socketInstance.on('message', (data) => {
@@ -80,6 +85,51 @@ console.log('Connection status:', socketInstance.getStatus().connected);
 ```
 
 **Note**: Set the socket in a parent component during initialization (e.g., `<script>` block of `+layout.svelte`). Retrieve using `Socket.getSocketContext` in child components during initialization and assign to a variable for use in event handlers to comply with Svelte's lifecycle requirements.
+
+# Securing Your Server URL in Vite
+
+Protecting sensitive information, such as your server URL, is crucial for maintaining the security of your application. By leveraging Vite's environment variables, you can securely manage and obscure your server URL, ensuring it remains hidden from client-side code.
+
+## Using Environment Variables in Vite
+
+Vite provides a clean way to define environment variables using `import.meta.env`. This allows you to reference your server URL without hardcoding it in your application code.
+
+### Example: Configuring a WebSocket Connection
+
+Below is an example of how to use Vite’s environment variables to define a WebSocket URL in your JavaScript code:
+
+```javascript
+// Initialize a WebSocket connection using the Vite environment variable
+const socket = new Socket(import.meta.env.VITE_SOCKET_URL);
+```
+
+### Setting Up the Vite Configuration
+
+To define the server URL, configure the `define` property in your Vite configuration file (`vite.config.js`). This approach ensures the URL is injected at build time and remains secure.
+
+```javascript
+import { defineConfig } from 'vite';
+import sveltekit from '@sveltekit/vite-plugin-sveltekit';
+
+// Vite configuration
+export default defineConfig({
+  plugins: [sveltekit()],
+  css: {
+    postcss: './postcss.config.js'
+  },
+  define: {
+    'import.meta.env.VITE_SOCKET_URL': JSON.stringify('http://localhost:3000')
+  }
+});
+```
+
+## Best Practices
+
+- **Use `.env` Files**: Instead of hardcoding the URL in `vite.config.js`, store it in a `.env` file (e.g., `VITE_SOCKET_URL=http://localhost:3000`) and load it using `import.meta.env.VITE_SOCKET_URL`. This keeps sensitive data out of version control.
+- **Restrict Exposure**: Ensure environment variables prefixed with `VITE_` are only exposed to the client when necessary, as Vite makes them available in the browser.
+- **Production URLs**: Update the URL in your `.env.production` file for deployment to point to your live server (e.g., `https://api.yourdomain.com`).
+
+By following these steps, you can securely manage your server URL and maintain a professional, robust development workflow.
 
 ## Demo Features
 
